@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Opening Stock Raisin...</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body { font-family: sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; text-align: center; background: #2c2f33; color: white; }
+        .btn { padding: 15px 30px; background: #7289da; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; margin-top: 20px; display: inline-block; }
+        .loader { border: 4px solid #f3f3f3; border-top: 4px solid #7289da; border-radius: 50%; width: 30px; height: 30px; animation: spin 2s linear infinite; margin-bottom: 20px; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+
+    <div class="loader"></div>
+    <h1>Launching App...</h1>
+    <p>If the app doesn't open automatically, click the button below:</p>
+    
+    <a id="launch-btn" href="#" class="btn">Open Stock Raisin</a>
+
+    <script>
+        // 1. Get the ID from the URL (e.g., ?k=123)
+        const urlParams = new URLSearchParams(window.location.search);
+        const key = urlParams.get('k');
+
+        if (itemId) {
+            const customProtocol = `stockraisin://item/${key}`;
+            
+            // 2. Update the button href just in case
+            document.getElementById('launch-btn').href = customProtocol;
+
+            // 3. Attempt to redirect automatically
+            window.location.href = customProtocol;
+
+            // 4. Optional: Close the tab after a delay (works in some browsers)
+            setTimeout(() => {
+                // Some browsers prevent auto-closing tabs, so we just let it sit
+                console.log("Attempted to launch app.");
+            }, 3000);
+        } else {
+            document.querySelector('h1').innerText = "Invalid Link";
+            document.querySelector('p').innerText = "No item ID was found in the link.";
+        }
+    </script>
+</body>
+</html>
