@@ -24,7 +24,7 @@
         const urlParams = new URLSearchParams(window.location.search);
         const key = urlParams.get('k');
 
-        if (itemId) {
+        if (key) {
             const customProtocol = `stockraisin://item/${key}`;
             
             // 2. Update the button href just in case
