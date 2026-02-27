@@ -25,7 +25,7 @@
         const key = urlParams.get('k');
 
         if (key) {
-            const customProtocol = `stockraisin://item/${key}`;
+            const customProtocol = `stockraisin://${key}`;
             
             // 2. Update the button href just in case
             document.getElementById('launch-btn').href = customProtocol;
